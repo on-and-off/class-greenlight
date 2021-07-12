@@ -1,0 +1,31 @@
+{
+  "name": "class-greenlight",
+  "version": "1.0.0",
+  "description": "오프라인 강의용 실시간 학생 수업 이해도 파악 서비스",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/on-and-off/class-greenlight.git"
+  },
+  "keywords": [
+    "hackerton"
+  ],
+  "author": "team on-and-off",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/on-and-off/class-greenlight/issues"
+  },
+  "homepage": "https://github.com/on-and-off/class-greenlight#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
+    "nodemon": "^2.0.12"
+  }
+}
