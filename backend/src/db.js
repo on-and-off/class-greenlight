@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// URI 추가하기
 mongoose.connect(URI);
 
 const db = mongoose.connection;
