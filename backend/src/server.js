@@ -9,5 +9,6 @@ const reqLogger = morgan("common");
 
 app.use(reqLogger);
 app.use("/user", authRouter);
+app.get("/", (req, res) => res.render("./static/index.html"));
 
 export default app;
