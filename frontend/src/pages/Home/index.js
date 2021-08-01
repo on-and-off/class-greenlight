@@ -21,7 +21,7 @@ const Home = () => {
       <Description>비대면 교육 실시간 소통 서비스</Description>
       <EduLightIcon src="./icon.svg" alt="icon" />
       <ColorButton variant="contained" size="large">
-        수업 만들기 >
+        수업 만들기 &gt;
       </ColorButton>
     </Container>
   );
