@@ -8,7 +8,7 @@ const Container = styled.div`
     font-weight: normal;
     font-style: normal;
   }
-  width: 16rem;
+  width: 20rem;
   height: 100vh;
   display: flex;
   flex-direction: column;
