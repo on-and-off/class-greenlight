@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 
+import Container from '../../components/Container';
+
 const ColorButton = withStyles(() => ({
   root: {
     color: 'white',
@@ -28,26 +30,6 @@ const Home = () => {
 };
 
 export default Home;
-
-const Container = styled.div`
-  @font-face {
-    font-family: 'TmoneyRoundWindRegular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff')
-      format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  width: 16rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* text-align: center; */
-  margin: 0 auto;
-  font-family: 'TmoneyRoundWindRegular';
-  font-weight: 400;
-`;
 
 const Title = styled.h1`
   @font-face {
