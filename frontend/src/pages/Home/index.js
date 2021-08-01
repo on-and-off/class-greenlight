@@ -1,28 +1,25 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 
 import Container from '../../components/Container';
-
-const ColorButton = withStyles(() => ({
-  root: {
-    color: 'white',
-    backgroundColor: green[500],
-    '&:hover': {
-      backgroundColor: green[700],
-    },
-  },
-}))(Button);
+import ColorButton from '../../components/ColorButton';
 
 const Home = () => {
+  const history = useHistory();
+
   return (
     <Container>
       <Title>에듀라이트</Title>
       <Description>비대면 교육 실시간 소통 서비스</Description>
       <EduLightIcon src="./icon.svg" alt="icon" />
-      <ColorButton variant="contained" size="large">
+      <ColorButton
+        variant="contained"
+        size="large"
+        onClick={() => {
+          history.push('/create');
+        }}
+      >
         수업 만들기 &gt;
       </ColorButton>
     </Container>
