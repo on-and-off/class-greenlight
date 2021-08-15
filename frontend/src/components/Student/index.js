@@ -6,18 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare as filledSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSquare as outlinedSquare } from '@fortawesome/free-regular-svg-icons';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
+import GroupIcon from '@material-ui/icons/Group';
 
-export default function Teacher() {
-  const [version, setVersion] = useState('beforeAsk');
-  const [attendance, setAttendance] = useState(40);
-  const [greenLight, setGreenLight] = useState(20);
-  const [yellowLight, setYellowLight] = useState(15);
-  const [redLight, setRedLight] = useState(5);
+export default function Student() {
+  const [version, setVersion] = useState('beforeResponse');
 
   const renderContent = () => {
-    if (version === 'beforeAsk') {
-      const beforeAskContent = [];
-      beforeAskContent.push(
+    if (version === 'beforeResponse') {
+      const beforeResponseContent = [];
+      beforeResponseContent.push(
         <Button
           variant="contained"
           color="primary"
@@ -27,86 +27,41 @@ export default function Teacher() {
             fontSize: '1.2rem',
           }}
           onClick={() => {
-            setVersion('afterAsk');
+            setVersion('afterResponse');
           }}
         >
           {' '}
-          학생들에게 요청을 보내보세요!
+          교사의 요청에 응답해보세요!
         </Button>,
       );
-      return beforeAskContent;
+      return beforeResponseContent;
     } else {
-      const afterAskContent = [];
-      afterAskContent.push(
+      const afterResponseContent = [];
+      afterResponseContent.push(
         <SummaryContainer>
           <p>API를 이해했나요?</p>
-          <p>87%</p>
+          <p className="myResonpose">이해했어요!</p>
         </SummaryContainer>,
       );
-      return afterAskContent;
-    }
-  };
-
-  const renderBlockGroup = () => {
-    const blockGroupArray = [];
-    if (version === 'beforeAsk') {
-      for (var i = 0; i < attendance; i++) {
-        blockGroupArray.push(
-          <FontAwesomeIcon
-            key={i}
-            icon={filledSquare}
-            style={{ color: '#ced6e0' }}
-          />,
-        );
-      }
-      return blockGroupArray;
-    } else {
-      for (var i = 0; i < greenLight; i++) {
-        blockGroupArray.push(
-          <FontAwesomeIcon
-            key={i}
-            icon={filledSquare}
-            style={{ color: '#2ecc71' }}
-          />,
-        );
-      }
-      for (var i = 0; i < yellowLight; i++) {
-        blockGroupArray.push(
-          <FontAwesomeIcon
-            key={i}
-            icon={filledSquare}
-            style={{ color: '#fbc531' }}
-          />,
-        );
-      }
-      for (var i = 0; i < redLight; i++) {
-        blockGroupArray.push(
-          <FontAwesomeIcon
-            key={i}
-            icon={filledSquare}
-            style={{ color: '#e84118' }}
-          />,
-        );
-      }
-      return blockGroupArray;
+      return afterResponseContent;
     }
   };
 
   const renderGuide = () => {
     return (
       <GuideContainer>
-        <p>
-          <FontAwesomeIcon icon={filledSquare} style={{ color: '#2ecc71' }} /> :
-          이해했어요!
-        </p>
-        <p>
-          <FontAwesomeIcon icon={filledSquare} style={{ color: '#fbc531' }} /> :
-          절반 정도 알겠어요!
-        </p>
-        <p>
-          <FontAwesomeIcon icon={filledSquare} style={{ color: '#e84118' }} /> :
-          다시 한번 설명해주세요!
-        </p>
+        <div>
+          <GroupIcon></GroupIcon>
+          <p>선생님께 나의 이해도를 알려주세요!</p>
+        </div>
+        <div>
+          <SentimentSatisfiedAltIcon></SentimentSatisfiedAltIcon>
+          <p>다 이해해다면 수업이 효율적으로 진행돼요!</p>
+        </div>
+        <div>
+          <EmojiPeopleIcon></EmojiPeopleIcon>
+          <p>아직 잘 모르겠다면 부연설명이 가능해요!</p>
+        </div>
       </GuideContainer>
     );
   };
@@ -122,10 +77,10 @@ export default function Teacher() {
             <p>강의자: 김철수 교수님</p>
           </InfoContainer>
           {renderContent()}
-          <BlockContainer>
-            <div>현재 출석 인원 : {attendance}명</div>
-            <BlockGroup>{renderBlockGroup()}</BlockGroup>
-          </BlockContainer>
+          <LoadingContainer>
+            <CircularProgress></CircularProgress>
+            <p>요청을 기다리는 중입니다...</p>
+          </LoadingContainer>
           {renderGuide()}
         </MainContainer>
         <ArrowForwardIosIcon></ArrowForwardIosIcon>
@@ -154,7 +109,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   border: solid 1px black;
   border-radius: 1rem;
-  width: 120%;
+  min-width: 120%;
   height: 45rem;
   justify-content: center;
   align-items: center;
@@ -176,12 +131,25 @@ const SummaryContainer = styled.div`
     font-size: 1.5rem;
     font-weight: bold;
   }
+  .myResonpose {
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #2ecc71;
+    width: 20rem;
+  }
 `;
 
-const BlockContainer = styled.div`
+const LoadingContainer = styled.div`
   text-align: center;
   margin: 1rem;
-  width: 55%;
+  margin: 1rem auto;
+  width: 60%;
+  p {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 `;
 
 const BlockGroup = styled.div`
@@ -190,19 +158,22 @@ const BlockGroup = styled.div`
   align-items: center;
   margin: 1rem auto;
   flex-wrap: wrap;
+  width: 50%;
   font-size: 2rem;
-  svg {
-    padding: 1px;
-  }
 `;
 
 const GuideContainer = styled.div`
   border-radius: 1rem;
   background: #ecf0f1;
-  width: 50%;
-  padding-inline: 1rem;
-  margin: 1rem;
+  width: 70%;
+  padding: 1rem;
+  div {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    padding-inline: 1rem;
+  }
   p {
-    margin: 1rem;
+    margin: 0.5rem;
   }
 `;
